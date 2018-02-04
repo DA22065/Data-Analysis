@@ -1,6 +1,6 @@
 # Data-Analysis
 
-## List Lecture Notes:
+## List of Lecture Notes:
  * [Week 1](https://github.com/DA22065/Data-Analysis/tree/master/Lecture%20Slides/Week1/week_1/presentation) 
 
 ## List of Home Works:
