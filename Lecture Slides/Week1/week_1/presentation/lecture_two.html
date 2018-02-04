@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>First Week: Introduction to R and Rstudio</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Ehyaei-Mirsadeghi" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="src/css/style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# First Week: Introduction to R and Rstudio
+## Lecture two
+### Ehyaei-Mirsadeghi
+### 2018/02/05
+
+---
+
+
+
+# R-Men
+
+&lt;img width="1000" height="562" src="src/img/highres.jpeg" &gt;
+
+---
+
+#  Seeking help
+
+There are various ways to seek help on R.
+
+If you are searching for help on a specific function that is in a package loaded into your namespace:
+
+```
+?function_name
+help(function_name)
+```
+--
+
+For example 
+
+
+```r
+?lm
+help(lm)
+```
+
+--
+
+To see documentation explicitly, use help() with the function name and package name.
+
+```
+help(adf.test, package="tseries")
+```
+
+---
+
+#  Seeking help
+
+If you're not sure what package it belongs to:
+
+```
+??function_name
+```
+
+
+```r
+??regressiom
+```
+
+--
+
+Search for key words or phrases in help pages, vignettes or task views, using the search engine at http://search.r-project.org and view them in a web browser.
+
+```
+RSiteSearch("pca")
+```
+---
+
+#  Run Example
+
+Run an Examples of specific function
+
+```
+example(functionname)
+```
+
+Try
+
+```
+example(sum)
+```
+
+```
+sum&gt; ## Pass a vector to sum, and it will add the elements together.
+sum&gt; sum(1:5)
+[1] 15
+```
+
+--
+
+You can see a list of vignettes on your computer by using vignette()
+
+```
+vignette()
+```
+
+You can see the vignettes for a particular package by including its name
+
+```
+vignette(package="beanplot")
+```
+
+---
+
+# Rdocumentation
+
+[Rdocumentation](http://www.rdocumentation.org/) will search across all installed packages in your library and pop up several options
+
+&lt;div style="text-align: center"&gt;
+&lt;img  height="450" src="src/img/rdocumentation.png" align="center" &gt;
+&lt;/div&gt;
+
+---
+
+# StackOverflow
+
+9 times out of 10, the answers you are seeking have already been answered on [StackOverflow](http://stackoverflow.com/questions/tagged/r). 
+
+&lt;div style="text-align: center"&gt;
+&lt;img  height="450" src="src/img/stackoverflow.png" align="center" &gt;
+&lt;/div&gt;
+
+---
+
+# R Objects
+
+To make the best of the R language, you'll need a strong understanding of the basic data types and data structures and how to operate on those.
+
+Everything in **R** is an object.
+
+--
+
+`R` has 6 atomic classes.
+
+* character
+* numeric (real or decimal)
+* integer
+* logical
+* complex
+
+---
+
+# Find Data type
+
+
+```r
+typeof() # what is it?
+length() # how long is it? What about two dimensional objects?
+attributes() # does it have any metadata?
+
+# Example
+
+x = "dataset"
+typeof(x)
+attributes(x)
+
+y = 1:10
+typeof(y)
+length(y)
+attributes(y)
+
+z = c(1L, 2L, 3L)
+typeof(z)
+```
+
+---
+
+# Data Structure
+
+R has many data structures. These include
+
+* atomic vector
+* list
+* matrix
+* data frame
+* factors
+* tables
+
+--
+
+A vector is the most common and basic data structure in `R` and is pretty much the workhorse of R. Technically, vectors can be one of two types:
+A vector can be a vector of elements that are most commonly **character**, **logical**, **integer** or **numeric**.
+
+You can create an empty vector with `vector()`
+
+---
+
+# Vector
+
+
+```r
+x = vector() # with a length and type
+vector("character", length = 10)
+```
+
+```
+ [1] "" "" "" "" "" "" "" "" "" ""
+```
+
+```r
+character(5) # character vector of length 5
+```
+
+```
+[1] "" "" "" "" ""
+```
+
+```r
+numeric(5)
+```
+
+```
+[1] 0 0 0 0 0
+```
+
+```r
+logical(5)
+```
+
+```
+[1] FALSE FALSE FALSE FALSE FALSE
+```
+
+--
+
+
+```r
+x = c(1, 2, 3)
+x
+```
+
+```
+[1] 1 2 3
+```
+
+---
+
+# Vector
+
+`x` is a numeric vector. These are the most common kind. They are numeric objects and are treated as double precision real numbers. To explicitly create integers, add an `L` at the end.
+
+
+```r
+x1 = c(1L, 2L, 3L)
+```
+
+You can also have logical vectors. 
+
+
+```r
+y = c(TRUE, TRUE, FALSE, FALSE)
+```
+
+Finally you can have character vectors:
+
+
+```r
+z = c("Alec", "Dan", "Rob", "Karthik")
+```
+
+---
+
+# Vector
+
+Examine your vector  
+
+
+```r
+typeof(z)
+```
+
+```
+[1] "character"
+```
+
+```r
+length(z)
+```
+
+```
+[1] 4
+```
+
+```r
+class(z)
+```
+
+```
+[1] "character"
+```
+
+```r
+str(z)
+```
+
+```
+ chr [1:4] "Alec" "Dan" "Rob" "Karthik"
+```
+
+---
+
+# Vector
+
+More examples of vectors
+
+
+```r
+x = c(0.5, 0.7)
+x = c(TRUE, FALSE)
+x = c("a", "b", "c", "d", "e")
+x = 9:100
+x = c(1+0i, 2+4i)
+```
+
+You can also create vectors as a sequence of numbers
+
+
+```r
+series = 1:10
+seq(10)
+```
+
+```
+ [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+```r
+seq(1, 10, by = 1)
+```
+
+```
+ [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+---
+
+# Other objects
+
+`Inf` is infinity. You can have either positive or negative infinity.
+
+
+```r
+1/0
+```
+
+```
+[1] Inf
+```
+
+```r
+1/Inf
+```
+
+```
+[1] 0
+```
+
+
+`NaN` means Not a number. It's an undefined value.
+
+
+```r
+0/0
+```
+
+```
+[1] NaN
+```
+
+---
+
+# Object attributes
+
+Each object can have attributes. Attribues can be part of an object of 
+R. These include: 
+
+* names
+* dimnames
+* dim
+* class
+* attributes (contain metadata)
+
+---
+
+# Change data type 
+
+You can also coerce vectors explicitly using the `as.&lt;class_name&gt;`. Example
+
+When you coerce an existing numeric vector with `as.numeric()`, it converts the vector to a double.
+
+
+```r
+x &lt;- 0:6
+identical(x, as.numeric(x))
+```
+
+```
+[1] FALSE
+```
+
+```r
+typeof(x)
+```
+
+```
+[1] "integer"
+```
+
+```r
+typeof(as.numeric(x))
+```
+
+```
+[1] "double"
+```
+
+---
+
+# Change data type 
+
+
+```r
+x &lt;- 0:6
+as.numeric(x)
+```
+
+```
+[1] 0 1 2 3 4 5 6
+```
+
+```r
+as.logical(x) 
+```
+
+```
+[1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+```
+
+```r
+as.character(x)
+```
+
+```
+[1] "0" "1" "2" "3" "4" "5" "6"
+```
+
+```r
+as.complex(x) 
+```
+
+```
+[1] 0+0i 1+0i 2+0i 3+0i 4+0i 5+0i 6+0i
+```
+
+---
+
+# Matrix
+
+Matrices are a special vector in R. They are not a separate type of object but simply an atomic vector with dimensions added on to it. Matrices have rows and columns. 
+
+
+```r
+m = matrix(nrow = 2, ncol = 2)
+m
+```
+
+```
+     [,1] [,2]
+[1,]   NA   NA
+[2,]   NA   NA
+```
+
+```r
+dim(m)
+```
+
+```
+[1] 2 2
+```
+
+---
+
+# Matrix
+
+Matrices are filled column-wise. 
+
+
+```r
+m = matrix(1:6, nrow = 2, ncol = 3)
+```
+
+Other ways to construct a matrix
+
+
+```r
+m = 1:10
+dim(m) = c(2, 5)
+```
+
+--
+
+You can also use the `byrow` argument to specify how the matrix is filled. From R's own documentation:
+
+
+```r
+mdat = matrix(c(1,2,3, 11,12,13), nrow = 2, ncol = 3, byrow = TRUE,
+               dimnames = list(c("row1", "row2"),
+                               c("C.1", "C.2", "C.3")))
+mdat
+```
+
+```
+     C.1 C.2 C.3
+row1   1   2   3
+row2  11  12  13
+```
+
+---
+
+# List
+
+A list is a special type of vector. Each element can be a different type.
+
+Create lists using `list()` or coerce other objects using `as.list()`
+
+
+```r
+x = list(1, "a", TRUE, 1+4i)
+x
+```
+
+```
+[[1]]
+[1] 1
+
+[[2]]
+[1] "a"
+
+[[3]]
+[1] TRUE
+
+[[4]]
+[1] 1+4i
+```
+
+---
+
+# List
+
+
+```r
+x = 1:10
+x = as.list(x)
+length(x)
+```
+
+```
+[1] 10
+```
+
+Different type of list
+
+
+```r
+xlist = list(a = "Karthik Ram", b = 1:10, data = iris[1:2,])
+xlist
+```
+
+```
+$a
+[1] "Karthik Ram"
+
+$b
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+$data
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+```
+
+---
+
+# List
+
+A list can contain many lists nested inside.
+
+
+```r
+temp = list(list(list(list())))
+temp
+```
+
+```
+[[1]]
+[[1]][[1]]
+[[1]][[1]][[1]]
+list()
+```
+
+```r
+is.recursive(temp)
+```
+
+```
+[1] TRUE
+```
+
+Lists are extremely useful inside functions. You can "staple" together lots of different kinds of results into a single object that a function can return.
+
+---
+
+# Factors
+
+Factors are special vectors that represent categorical data. Factors can be ordered or unordered and are important when for modelling functions such as `lm()` and `glm()` and also in plot methods.
+
+Factors can only contain pre-defined values.
+
+Factors are pretty much integers that have labels on them.  While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings. Some string methods will coerce factors to strings, while others will throw an error.
+
+--
+
+Sometimes factors can be left unordered. Example: `male`, `female`.
+
+Other times you might want factors to be ordered (or ranked). Example: `low`, `medium`, `high`. 
+
+Underlying it's represented by numbers 1, 2, 3.
+
+---
+
+# Factors
+
+Factors can be created with `factor()`. Input is generally a character vector.
+
+
+```r
+x = factor(c("yes", "no", "no", "yes", "yes"))
+x
+```
+
+```
+[1] yes no  no  yes yes
+Levels: no yes
+```
+
+`table(x)` will return a frequency table.
+
+If you need to convert a factor to a character vector, simply use
+
+
+```r
+as.character(x)
+```
+
+```
+[1] "yes" "no"  "no"  "yes" "yes"
+```
+
+---
+
+# Factors
+
+In modeling functions, it is important to know what the baseline level is.
+This is the first factor but by default the ordering is determined by alphabetical order of words entered. You can change this by speciying the levels (another option is to use the function `relevel`).
+
+
+```r
+x = factor(c("yes", "no", "yes"), levels = c("yes", "no"))
+x
+```
+
+```
+[1] yes no  yes
+Levels: yes no
+```
+
+---
+
+# Data frame
+
+A data frame is a very important data type in R. It's pretty much the *de facto* data structure for most tabular data and what we use for statistics.
+
+Data frames can have additional attributes such as `rownames()`, which can be useful for annotating data, like subject_id or sample_id. But most of the time they are not used.
+
+--
+
+Some additional information on data frames:
+
+* Usually created by `read.csv()` and `read.table()`.
+
+* Can convert to `matrix` with `data.matrix()`
+
+* Can also create with `data.frame()` function.
+
+* Find the number of rows and columns with `nrow(df)` and `ncol(df)`, respectively.
+
+---
+
+# Data frame
+
+You create a data frame using `data.frame()`, which takes named vectors as input:
+
+
+```r
+df = data.frame(x = 1:3, y = c("a", "b", "c"))
+str(df)
+```
+
+```
+'data.frame':	3 obs. of  2 variables:
+ $ x: int  1 2 3
+ $ y: Factor w/ 3 levels "a","b","c": 1 2 3
+```
+
+--
+
+Beware `data.frame()`'s default behaviour which turns strings into factors. Use `stringAsFactors = FALSE` to suppress this behaviour: 
+
+
+```r
+df = data.frame(
+  x = 1:3,
+  y = c("a", "b", "c"),
+  stringsAsFactors = FALSE)
+str(df)
+```
+
+```
+'data.frame':	3 obs. of  2 variables:
+ $ x: int  1 2 3
+ $ y: chr  "a" "b" "c"
+```
+
+---
+
+# Combining data frames
+
+
+```r
+df = data.frame(id = letters[1:5], x = 1:5, y = rnorm(5))
+df
+```
+
+```
+  id x          y
+1  a 1  1.0099846
+2  b 2  0.7014300
+3  c 3 -0.3432664
+4  d 4 -0.3279254
+5  e 5 -0.5689514
+```
+
+```r
+cbind(df, data.frame(z = 4))
+```
+
+```
+  id x          y z
+1  a 1  1.0099846 4
+2  b 2  0.7014300 4
+3  c 3 -0.3432664 4
+4  d 4 -0.3279254 4
+5  e 5 -0.5689514 4
+```
+
+---
+
+# Useful functions
+
+* `head()` - see first 6 rows
+* `tail()` - see last 6 rows
+* `dim()` - see dimensions
+* `nrow()` - number of rows
+* `ncol()` - number of columns
+* `str()` - structure of each column
+* `names()` - will list the `names` attribute for a data frame (or any object really), which gives the column names.
+
+A data frame is a special type of list where every element of the list has same length.
+
+---
+
+# Try it on iris!
+
+&lt;div style="text-align: center"&gt;
+&lt;img height="500" src="src/img/Iris.jpg" align="center" &gt;
+&lt;/div&gt;
+
+---
+
+# Indexing vector
+
+
+```r
+a = c(1,2,5.3,6,-2,4,4,2,1) # numeric vector
+names(a) = LETTERS[1:9] # set name for element of vector
+names(a)
+```
+
+```
+[1] "A" "B" "C" "D" "E" "F" "G" "H" "I"
+```
+
+```r
+n = 5 
+a[n] # nth element
+```
+
+```
+ E 
+-2 
+```
+
+```r
+a[-n] # all but the nth element
+```
+
+```
+  A   B   C   D   F   G   H   I 
+1.0 2.0 5.3 6.0 4.0 4.0 2.0 1.0 
+```
+
+```r
+a[1:n] # ﬁrst n elements
+```
+
+```
+   A    B    C    D    E 
+ 1.0  2.0  5.3  6.0 -2.0 
+```
+
+```r
+a[-(1:n)] # elements from n+1 to the end speciﬁc elements
+```
+
+```
+F G H I 
+4 4 2 1 
+```
+
+---
+
+# Indexing vector
+
+
+```r
+a[c(2,4)] # 2nd and 4th elements of vector
+```
+
+```
+B D 
+2 6 
+```
+
+```r
+a["D"] # element named "name"
+```
+
+```
+D 
+6 
+```
+
+```r
+a[a &gt; 3] #all elements greater than 3 
+```
+
+```
+  C   D   F   G 
+5.3 6.0 4.0 4.0 
+```
+
+```r
+a[a &gt; 3 &amp; a &lt; 5] # all elements between 3 and 5
+```
+
+```
+F G 
+4 4 
+```
+
+```r
+a[a %in% c(1,4,2)] # elements in the given set
+```
+
+```
+A B F G H I 
+1 2 4 4 2 1 
+```
+
+---
+
+# Subsetting matrices
+
+
+```r
+# generates 5 x 4 numeric matrix 
+mat = matrix(1:20, nrow=5,ncol=4)
+mat
+```
+
+```
+     [,1] [,2] [,3] [,4]
+[1,]    1    6   11   16
+[2,]    2    7   12   17
+[3,]    3    8   13   18
+[4,]    4    9   14   19
+[5,]    5   10   15   20
+```
+
+---
+
+# Subsetting matrices
+
+
+```r
+dim(mat)
+```
+
+```
+[1] 5 4
+```
+
+```r
+nrow(mat)
+```
+
+```
+[1] 5
+```
+
+```r
+ncol(mat)
+```
+
+```
+[1] 4
+```
+
+```r
+mat[,4] # 4th column of matrix
+```
+
+```
+[1] 16 17 18 19 20
+```
+
+```r
+mat[3,] # 3rd row of matrix 
+```
+
+```
+[1]  3  8 13 18
+```
+
+---
+
+# Subsetting matrices
+
+
+```r
+mat[2:4,1:3] # rows 2,3,4 of columns 1,2,3
+```
+
+```
+     [,1] [,2] [,3]
+[1,]    2    7   12
+[2,]    3    8   13
+[3,]    4    9   14
+```
+
+```r
+mat[mat&gt;15] # 
+```
+
+```
+[1] 16 17 18 19 20
+```
+
+```r
+mat[mat&gt;15] = 0
+mat
+```
+
+```
+     [,1] [,2] [,3] [,4]
+[1,]    1    6   11    0
+[2,]    2    7   12    0
+[3,]    3    8   13    0
+[4,]    4    9   14    0
+[5,]    5   10   15    0
+```
+
+---
+
+# Subsetting matrices
+
+
+```r
+# another example
+cells = c(1,26,24,68)
+rnames = c("R1", "R2")
+cnames = c("C1", "C2") 
+mymatrix = matrix(cells, nrow=2, ncol=2, byrow=TRUE,
+  dimnames=list(rnames, cnames))
+
+mymatrix["R1",]
+```
+
+```
+C1 C2 
+ 1 26 
+```
+
+```r
+mymatrix[,"C1"]
+```
+
+```
+R1 R2 
+ 1 24 
+```
+
+---
+
+# Subsetting data frames
+
+
+```r
+n = c(2, 3, 5) 
+s = c("aa", "bb", "cc") 
+b = c(TRUE, FALSE, TRUE) 
+df = data.frame(n, s, b)
+df$z = 1:3
+df$z = NULL
+```
+
+---
+
+# Please Try
+
+```
+data("iris")
+head(iris)
+tail(iris)
+dim(iris)
+colnames(iris)
+iris[1,1] # first row, first column
+iris[2,] # the second row 
+iris[,3] # the third column
+iris[,"Sepal.Length"] # Columns can also be called by their name
+iris$Sepal.Length # Use the dollar sign $ to call a column
+iris[c(5,7,9), 1:2] # Get the 5th, 7th, and 9th rows and the first two columns.
+iris[iris$Petal.Width &gt; 1, ]
+iris[iris$Petal.Length == 4,]
+iris[iris$Petal.Length &gt; 4 &amp; iris$Species == "versicolor",]
+iris[iris$Species == "setosa",]
+iris[!iris$Species == "setosa",]
+```
+
+
+---
+
+# Arithmetic Operators
+
+```
++	# addition
+-	# subtraction
+*	# multiplication
+/	# division
+^ # or **	exponentiation
+x # %% y	modulus (x mod y) 5%%2 is 1
+x # %/% y	integer division 5%/%2 is 2
+```
+
+---
+
+# Logical Operators
+
+```
+&lt;	less than
+&lt;=	less than or equal to
+&gt;	greater than
+&gt;=	greater than or equal to
+==	exactly equal to
+!=	not equal to
+!x	Not x
+x | y	x OR y
+x &amp; y	x AND y
+isTRUE(x)	test if X is TRUE
+```
+
+---
+
+# matrix Operator 
+
+```
+A * B	Element-wise multiplication
+A %*% B	Matrix multiplication
+A %o% B	Outer product. AB'
+crossprod(A,B)
+crossprod(A)	A'B and A'A respectively.
+t(A)	Transpose
+diag(x)	Creates diagonal matrix with elements of x in the principal diagonal
+diag(A)	Returns a vector containing the elements of the principal diagonal
+diag(k)	If k is a scalar, this creates a k x k identity matrix. Go figure.
+solve(A, b)	Returns vector x in the equation b = Ax (i.e., A-1b)
+```
+
+---
+
+# Some functions
+
+```
+log (10)       # Natural logarithm with base e=2.7182
+log10(5)      # Common logarithm with base 10
+5^2             # 5 raised to the second power
+5/8             # Division
+sqrt (16)      # Square root
+abs (3-7)     # Absolute value 
+pi                # 3.14
+exp(2)         # Exponential function 
+round(pi,0)  # Round pi to a whole number
+round(pi,1)  # Round pi to 1 decimal place
+floor(15.9)   # Rounds down
+ceiling(15.1)  # Rounds up
+sin(.5)        # Sine Function
+tan(.5)       # Tangent Function
+acos(0.8775826)        # Inverse Cosine
+atan(0.5463025)      # Inverse Tangent
+```
+---
+
+# Chaetsheet
+
+&lt;div style="text-align: center"&gt;
+&lt;img height="500" src="src/img/cheat.png" align="center" &gt;
+&lt;/div&gt;
+
+---
+
+# Thank You for Attention
+
+&lt;div style="text-align: center"&gt;
+  &lt;img width="533" height="459" src="src/img/Data.gif" style="background:none; border:none; box-shadow:none;"&gt;
+&lt;/div&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
